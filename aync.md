@@ -10,19 +10,19 @@ import { readfileAsync } from "fs";
 function loadconfig() {
     try {
         let config = readfileAsync("./config");
-        return [config, null];
+        return [null , config];
     } catch (err) {
-        return [null, err];
+        return [err , null];
     }
 }
 
-let [data, err] = loadconfig();
+let [err, data] = loadconfig();
 
 // 如果错误不重要可以丢弃
-let [data] = loadconfig();
+let [,data] = loadconfig();
 
 // Promise 一样可以用类似方法
-let [data, err] = await loadconfig();
+let [err, data] = await loadconfig();
 ```
 
 # 同步函数转异步函数
